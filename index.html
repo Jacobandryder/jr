@@ -2,4 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to My Website</h1>
+        <p>This is a simple website hosted on GitHub Pages! Feel free to enter your information below.</p>
+
+        <!-- Input Field for Name -->
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <!-- Text Area for Message -->
+        <label for="message">Your Message:</label>
+        <textarea id="message" placeholder="Enter your message here" rows="4"></textarea>
+
+        <!-- Submit Button -->
+        <button onclick="submitForm()">Submit</button>
+    </div>
+
+    <!-- Optional JavaScript Function -->
+    <script>
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            alert(`Thank you, ${name}! Your message: "${message}" has been received.`);
+        }
+    </script>
+</body>
+</html>
