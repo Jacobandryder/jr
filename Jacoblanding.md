@@ -7,4 +7,4 @@
 ## About Ryder
 ### Ryder is a kid that is 7 yers old and loves squishmallows and tys
 ## More stuff
-### you can vist this website https://jacobandryder.github.io/jr.github.io/ ##### it cant do that much
+### you can vist this website https://jacobandryder.github.io/jr.github.io/
