@@ -5,5 +5,6 @@
 ## About Jacob
 ### Jacob is a kid that is 10 yers old and loves tech
 ## About Ryder
-### Ryder is a kid that is 7 yers old and Ryder loves squishmallows and tys
+### Ryder is a kid that is 7 yers old and loves squishmallows and tys
 ## More stuff
+### you can vist this website https://jacobandryder.github.io/jr.github.io/ ##### it cant do that much
