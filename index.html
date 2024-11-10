@@ -11,16 +11,17 @@
         <h1>Welcome to My Website</h1>
         <p>This is a simple website hosted on GitHub Pages! Feel free to enter your information below.</p>
 
-        <!-- Input Field for Name -->
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" placeholder="Enter your name">
+        <!-- Form Element with Input Fields -->
+        <form onsubmit="submitForm(); return false;">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" aria-label="Enter your name" required>
 
-        <!-- Text Area for Message -->
-        <label for="message">Your Message:</label>
-        <textarea id="message" placeholder="Enter your message here" rows="4"></textarea>
+            <label for="message">Your Message:</label>
+            <textarea id="message" placeholder="Enter your message here" rows="4" aria-label="Enter your message" required></textarea>
 
-        <!-- Submit Button -->
-        <button onclick="submitForm()">Submit</button>
+            <!-- Submit Button -->
+            <button type="submit" id="submitButton">Submit</button>
+        </form>
     </div>
 
     <!-- Optional JavaScript Function -->
@@ -29,6 +30,7 @@
             const name = document.getElementById('name').value;
             const message = document.getElementById('message').value;
             alert(`Thank you, ${name}! Your message: "${message}" has been received.`);
+            document.getElementById('submitButton').disabled = true;
         }
     </script>
 </body>
