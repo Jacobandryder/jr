@@ -3,15 +3,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
 
-    
+/* Body Styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
-    background-image: url('logo.png'); /* Path to your logo image */
-    background-size: 150px; /* Adjust size as needed */
-    background-repeat: no-repeat; /* Set to repeat if you want a pattern */
-    background-position: center top; /* Position the logo */
+    background-image: url('logo.png'); /* Ensure logo.png exists */
+    background-size: 150px;
+    background-repeat: no-repeat;
+    background-position: center top;
     color: #333;
     line-height: 1.6;
     display: flex;
@@ -20,8 +21,6 @@ body {
     height: 100vh;
     padding: 20px;
 }
-
-
 
 /* Container Styling */
 .container {
@@ -44,6 +43,17 @@ p {
     margin: 10px 0;
 }
 
+/* Input and Textarea Styling */
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
 /* Button Styling */
 button {
     background-color: #007bff;
@@ -58,26 +68,3 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Title</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Welcome to My Website</h1>
-        <p>This is a simple website hosted on GitHub Pages!</p>
-        
-        <!-- Text Input Field -->
-        <input type="text" placeholder="no">
-
-        <!-- Text Area -->
-        <textarea placeholder="hi" rows="4"></textarea>
-        
-        <button>Submit</button>
-    </div>
-</body>
-</html>
