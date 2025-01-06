@@ -37,7 +37,12 @@
         </form>
     </div>
 
-    <!-- JavaScript for Minimize Button -->
+    <!-- Footer -->
+    <footer>
+        <p id="footerText"></p>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
         const gameContainer = document.getElementById('gameContainer');
         const minimizeButton = document.getElementById('minimizeButton');
@@ -60,6 +65,10 @@
             alert(`Thank you, ${name}! Your message: "${message}" has been received.`);
             document.getElementById('submitButton').disabled = true;
         }
+
+        // Update footer year dynamically
+        const currentYear = new Date().getFullYear();
+        document.getElementById('footerText').innerHTML = `maybe © ${currentYear} CJL & :) co.`;
     </script>
 </body>
 </html>
