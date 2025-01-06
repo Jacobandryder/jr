@@ -6,7 +6,7 @@
 }
 
 /* Body Styling */
-body {
+html, body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     background-image: url('logo.png'); /* Path to your logo image */
@@ -15,19 +15,56 @@ body {
     background-position: center top; /* Position the logo */
     color: #333;
     line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    min-height: 100vh; /* Allow scrolling if content exceeds the viewport height */
+    min-height: 100%; /* Allow body to expand with content */
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll issues */
 }
 
 /* Container Styling */
 .container {
     max-width: 800px;
-    background-color: #fff;
+    margin: 0 auto;
     padding: 20px;
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 150px; /* Adjust this if your logo overlaps the content */
+    margin-top: 200px; /* Push the content below the logo */
+}
+
+/* Header Styling */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styling */
+p {
+    margin: 10px 0;
+}
+
+/* Input and Textarea Styling */
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Button Styling */
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
