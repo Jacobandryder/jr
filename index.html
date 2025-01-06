@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean Website with Profile</title>
+    <title>Clean Website</title>
     <style>
         /* General Reset */
         * {
@@ -19,22 +19,104 @@
             background-color: #f9f9f9;
             color: #333;
             line-height: 1.6;
-            padding: 20px;
+        }
+
+        header {
+            background: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+        }
+
+        .profile-btn {
+            background: #fff;
+            color: #007BFF;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: 1px solid #007BFF;
+            transition: 0.3s;
+        }
+
+        .profile-btn:hover {
+            background: #e7f3ff;
         }
 
         .container {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 20px auto;
             text-align: center;
         }
 
+        /* Game Section */
+        .game-container {
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+        }
+
+        /* Form Section */
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        form input,
+        form textarea,
+        form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        form button:hover {
+            background: #0056b3;
+        }
+
+        /* Profile Section */
         .profile-section {
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            text-align: center;
+            margin: 20px 0;
         }
 
         .profile-picture {
@@ -45,27 +127,7 @@
             margin-bottom: 15px;
         }
 
-        .profile-info {
-            font-size: 1.2rem;
-            margin: 15px 0;
-        }
-
-        .profile-actions button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #fff;
-            background: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin: 5px;
-        }
-
-        .profile-actions button:hover {
-            background: #0056b3;
-        }
-
+        /* Footer */
         footer {
             margin-top: 40px;
             padding: 10px;
@@ -78,19 +140,36 @@
     </style>
 </head>
 <body>
+    <!-- Header with Profile Button -->
+    <header>
+        <h1>My Website</h1>
+        <button class="profile-btn" onclick="scrollToProfile()">Profile</button>
+    </header>
+
     <div class="container">
-        <h1>Welcome to My Website</h1>
-        <p>This is a website hosted on GitHub Pages & Netlify! Feel free to explore and check out the profile section below.</p>
+        <!-- Game Embed -->
+        <div class="game-container">
+            <iframe src="https://www.crazygames.com/embed/bank-heist" allowfullscreen></iframe>
+        </div>
+
+        <!-- Form Section -->
+        <form onsubmit="submitForm(); return false;">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" aria-label="Enter your name" required>
+
+            <label for="message">Your Message:</label>
+            <textarea id="message" placeholder="Enter your message here" rows="4" aria-label="Enter your message" required></textarea>
+
+            <button type="submit" id="submitButton">Submit</button>
+        </form>
 
         <!-- Profile Section -->
         <div class="profile-section" id="profileSection">
-            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture" id="profilePicture">
-            <h2 id="profileName">User Name</h2>
-            <p class="profile-info" id="profileDescription">Description of the user goes here.</p>
-            <p class="profile-info" id="profileQuote">"This is a sample quote."</p>
-
-            <!-- Profile Actions -->
-            <div class="profile-actions">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture">
+            <h2 id="profileName">Chris Johnson</h2>
+            <p class="profile-info">Web Developer | Tech Enthusiast | Gamer</p>
+            <p class="profile-info">"Coding is my superpower."</p>
+            <div>
                 <button onclick="viewProfile()">View Profile</button>
                 <button onclick="sendMessage()">Message</button>
             </div>
@@ -103,29 +182,29 @@
     </footer>
 
     <script>
-        // Populate the profile section dynamically
-        const profileData = {
-            name: "Chris Johnson",
-            description: "Web Developer | Tech Enthusiast | Gamer",
-            quote: "Coding is my superpower.",
-            picture: "https://via.placeholder.com/150" // Replace with an actual image URL
-        };
-
-        document.getElementById("profileName").textContent = profileData.name;
-        document.getElementById("profileDescription").textContent = profileData.description;
-        document.getElementById("profileQuote").textContent = profileData.quote;
-        document.getElementById("profilePicture").src = profileData.picture;
-
-        // Footer year update
+        // Populate footer year dynamically
         document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-        // Profile actions
+        // Scroll to Profile Section
+        function scrollToProfile() {
+            document.getElementById("profileSection").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Form Submission Alert
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            alert(`Thank you, ${name}! Your message: "${message}" has been received.`);
+            document.getElementById('submitButton').disabled = true;
+        }
+
+        // Profile Button Actions
         function viewProfile() {
-            alert(`Viewing ${profileData.name}'s profile!`);
+            alert("Viewing profile!");
         }
 
         function sendMessage() {
-            alert(`Sending a message to ${profileData.name}!`);
+            alert("Message sent!");
         }
     </script>
 </body>
