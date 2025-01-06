@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean Website</title>
+    <title>Clean Website with Profile</title>
     <style>
-        /* Reset and Global Styles */
+        /* General Reset */
         * {
             margin: 0;
             padding: 0;
@@ -19,103 +19,54 @@
             background-color: #f9f9f9;
             color: #333;
             line-height: 1.6;
-            margin: 0;
+            padding: 20px;
         }
 
         .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            color: #555;
-        }
-
-        .game-container {
-            position: relative;
-            margin-bottom: 30px;
+        .profile-section {
+            background: #fff;
+            padding: 20px;
             border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #ddd;
-            background: #eee;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            text-align: center;
         }
 
-        .game-container iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-        }
-
-        .minimize-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: background-color 0.3s;
-        }
-
-        .minimize-button:hover {
-            background-color: #0056b3;
-        }
-
-        form {
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 1rem;
-        }
-
-        input, textarea, button {
-            width: 100%;
-            padding: 10px;
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #007BFF;
             margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        }
+
+        .profile-info {
+            font-size: 1.2rem;
+            margin: 15px 0;
+        }
+
+        .profile-actions button {
+            padding: 10px 20px;
             font-size: 1rem;
-        }
-
-        input:focus, textarea:focus {
-            border-color: #007BFF;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
-
-        button {
-            background-color: #007BFF;
-            color: white;
+            color: #fff;
+            background: #007BFF;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background 0.3s;
+            margin: 5px;
         }
 
-        button:hover {
-            background-color: #0056b3;
+        .profile-actions button:hover {
+            background: #0056b3;
         }
 
-        .footer {
+        footer {
             margin-top: 40px;
             padding: 10px;
             text-align: center;
@@ -129,54 +80,52 @@
 <body>
     <div class="container">
         <h1>Welcome to My Website</h1>
-        <p>This is a website hosted on GitHub Pages & Netlify! Feel free to enter some information below. If you are bored, you can play Bank Heist.</p>
+        <p>This is a website hosted on GitHub Pages & Netlify! Feel free to explore and check out the profile section below.</p>
 
-        <!-- Game Embed with Minimize Button -->
-        <div class="game-container" id="gameContainer">
-            <iframe src="https://www.crazygames.com/embed/bank-heist" allow="gamepad *; fullscreen *;" allowfullscreen></iframe>
-            <button class="minimize-button" id="minimizeButton">Minimize</button>
+        <!-- Profile Section -->
+        <div class="profile-section" id="profileSection">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture" id="profilePicture">
+            <h2 id="profileName">User Name</h2>
+            <p class="profile-info" id="profileDescription">Description of the user goes here.</p>
+            <p class="profile-info" id="profileQuote">"This is a sample quote."</p>
+
+            <!-- Profile Actions -->
+            <div class="profile-actions">
+                <button onclick="viewProfile()">View Profile</button>
+                <button onclick="sendMessage()">Message</button>
+            </div>
         </div>
-
-        <!-- Form -->
-        <form onsubmit="submitForm(); return false;">
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" placeholder="Enter your name" required>
-            
-            <label for="message">Your Message:</label>
-            <textarea id="message" placeholder="Enter your message here" rows="4" required></textarea>
-            
-            <button type="submit">Submit</button>
-        </form>
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         maybe © <span id="currentYear"></span> CJL & :) co.
     </footer>
 
     <script>
-        // Minimize button functionality
-        const gameContainer = document.getElementById('gameContainer');
-        const minimizeButton = document.getElementById('minimizeButton');
+        // Populate the profile section dynamically
+        const profileData = {
+            name: "Chris Johnson",
+            description: "Web Developer | Tech Enthusiast | Gamer",
+            quote: "Coding is my superpower.",
+            picture: "https://via.placeholder.com/150" // Replace with an actual image URL
+        };
 
-        minimizeButton.addEventListener('click', () => {
-            if (gameContainer.style.height === '50px') {
-                gameContainer.style.height = '400px';
-                minimizeButton.textContent = 'Minimize';
-            } else {
-                gameContainer.style.height = '50px';
-                minimizeButton.textContent = 'Expand';
-            }
-        });
+        document.getElementById("profileName").textContent = profileData.name;
+        document.getElementById("profileDescription").textContent = profileData.description;
+        document.getElementById("profileQuote").textContent = profileData.quote;
+        document.getElementById("profilePicture").src = profileData.picture;
 
-        // Update the year dynamically
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Footer year update
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-        // Form submission functionality
-        function submitForm() {
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
-            alert(`Thank you, ${name}! Your message: "${message}" has been received.`);
+        // Profile actions
+        function viewProfile() {
+            alert(`Viewing ${profileData.name}'s profile!`);
+        }
+
+        function sendMessage() {
+            alert(`Sending a message to ${profileData.name}!`);
         }
     </script>
 </body>
