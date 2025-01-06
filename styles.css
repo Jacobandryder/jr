@@ -9,17 +9,16 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
-    background-image: url('logo.png'); /* Ensure logo.png exists */
-    background-size: 150px;
-    background-repeat: no-repeat;
-    background-position: center top;
+    background-image: url('logo.png'); /* Path to your logo image */
+    background-size: 150px; /* Adjust size as needed */
+    background-repeat: no-repeat; /* Set to repeat if you want a pattern */
+    background-position: center top; /* Position the logo */
     color: #333;
     line-height: 1.6;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
     padding: 20px;
+    min-height: 100vh; /* Allow scrolling if content exceeds the viewport height */
 }
 
 /* Container Styling */
@@ -30,41 +29,5 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-/* Header Styling */
-h1 {
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Paragraph Styling */
-p {
-    margin: 10px 0;
-}
-
-/* Input and Textarea Styling */
-input[type="text"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-/* Button Styling */
-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #0056b3;
+    margin-top: 150px; /* Adjust this if your logo overlaps the content */
 }
