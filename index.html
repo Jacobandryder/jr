@@ -3,8 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean Website</title>
+    <title>jr</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styling for the minimize button */
+        .minimize-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        .minimize-button:hover {
+            background-color: #0056b3;
+        }
+
+        .game-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Set max width for the embed */
+            margin: 0 auto 20px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            transition: height 0.3s ease, margin 0.3s ease;
+        }
+
+        .game-container iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .game-container.collapsed {
+            height: 40px; /* Height for the button to remain visible */
+            margin-bottom: 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -17,13 +63,14 @@
         <!-- Game Embed with Minimize Button -->
         <div class="game-container" id="gameContainer" style="height: 500px;">
             <iframe src="https://www.crazygames.com/embed/bank-heist" 
+                    frameborder="0" 
                     allow="gamepad *; fullscreen *;" 
                     allowfullscreen>
             </iframe>
             <button class="minimize-button" id="minimizeButton">Minimize</button>
         </div>
 
-        <!-- Form Section -->
+        <!-- Form Element with Input Fields -->
         <form onsubmit="submitForm(); return false;">
             <label for="name">Your Name:</label>
             <input type="text" id="name" placeholder="Enter your name" aria-label="Enter your name" required>
@@ -36,12 +83,13 @@
         </form>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p id="footerText"></p>
-    </footer>
+    <div class="footer">
+        <script>
+            document.write("maybe &copy; " + new Date().getFullYear() + " CJL & :) co.");
+        </script>
+    </div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript for Minimize Button -->
     <script>
         const gameContainer = document.getElementById('gameContainer');
         const minimizeButton = document.getElementById('minimizeButton');
@@ -53,7 +101,7 @@
                 minimizeButton.textContent = 'Minimize';
             } else {
                 gameContainer.classList.add('collapsed');
-                gameContainer.style.height = '50px';
+                gameContainer.style.height = '40px';
                 minimizeButton.textContent = 'Expand';
             }
         });
@@ -64,10 +112,6 @@
             alert(`Thank you, ${name}! Your message: "${message}" has been received.`);
             document.getElementById('submitButton').disabled = true;
         }
-
-        // Update footer year dynamically
-        const currentYear = new Date().getFullYear();
-        document.getElementById('footerText').innerHTML = `maybe © ${currentYear} CJL & :) co.`;
     </script>
 </body>
 </html>
