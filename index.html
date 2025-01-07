@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean Website</title>
+    <title>Website with Expandable Game</title>
     <style>
         /* General Reset */
         * {
@@ -37,7 +37,6 @@
             font-size: 1.5rem;
         }
 
-        /* Profile Button and Dropdown */
         .profile-container {
             position: relative;
         }
@@ -51,42 +50,10 @@
             cursor: pointer;
             border: 1px solid #007BFF;
             transition: 0.3s;
-            position: relative;
         }
 
         .profile-btn:hover {
             background: #e7f3ff;
-        }
-
-        .dropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            width: 150px;
-            z-index: 10;
-        }
-
-        .dropdown.active {
-            display: block;
-        }
-
-        .dropdown a {
-            text-decoration: none;
-            color: #007BFF;
-            padding: 8px 0;
-            display: block;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .dropdown a:hover {
-            background: #f1f1f1;
         }
 
         .user-name {
@@ -107,6 +74,8 @@
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
         }
 
         .game-container iframe {
@@ -115,7 +84,34 @@
             border: 0;
         }
 
-        /* Form Section */
+        .game-container.expanded {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            border-radius: 0;
+        }
+
+        .game-container.expanded iframe {
+            height: 100%;
+        }
+
+        .expand-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .expand-btn:hover {
+            background: #0056b3;
+        }
+
         form {
             background: #fff;
             padding: 20px;
@@ -124,44 +120,14 @@
             margin: 20px 0;
         }
 
-        form label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        form input,
-        form textarea,
-        form button {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 1rem;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        form button {
-            background: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        form button:hover {
-            background: #0056b3;
-        }
-
-        /* Footer */
         footer {
             margin-top: 40px;
             padding: 10px;
             text-align: center;
             font-size: 0.9rem;
             color: #333;
-            background: #d0e7ff; /* Light blue background */
-            border-top: 1px solid #b0d4f1; /* Subtle border for separation */
+            background: #d0e7ff;
+            border-top: 1px solid #b0d4f1;
         }
     </style>
 </head>
@@ -180,8 +146,9 @@
 
     <div class="container">
         <!-- Game Embed -->
-        <div class="game-container">
+        <div class="game-container" id="gameContainer">
             <iframe src="https://www.crazygames.com/embed/bank-heist" allowfullscreen></iframe>
+            <button class="expand-btn" id="expandButton" onclick="toggleGameSize()">Expand</button>
         </div>
 
         <!-- Form Section -->
@@ -227,6 +194,20 @@
                 document.getElementById("userName").textContent = savedName;
             }
         });
+
+        // Toggle Game Size
+        function toggleGameSize() {
+            const gameContainer = document.getElementById("gameContainer");
+            const expandButton = document.getElementById("expandButton");
+
+            if (gameContainer.classList.contains("expanded")) {
+                gameContainer.classList.remove("expanded");
+                expandButton.textContent = "Expand";
+            } else {
+                gameContainer.classList.add("expanded");
+                expandButton.textContent = "De-expand";
+            }
+        }
 
         // Form Submission Alert
         function submitForm() {
