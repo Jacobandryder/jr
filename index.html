@@ -84,15 +84,8 @@
             border: 0;
         }
 
-        .game-container.expanded {
-            width: 100vw;
-            height: 100vh;
-            margin: 0;
-            border-radius: 0;
-        }
-
-        .game-container.expanded iframe {
-            height: 100%;
+        .game-container.hidden {
+            display: none;
         }
 
         .expand-btn {
@@ -138,9 +131,6 @@
         <div class="profile-container">
             <button class="profile-btn" onclick="toggleDropdown()">Profile</button>
             <span id="userName" class="user-name"></span>
-            <div id="profileDropdown" class="dropdown">
-                <a onclick="enterName()">Enter Name</a>
-            </div>
         </div>
     </header>
 
@@ -148,8 +138,11 @@
         <!-- Game Embed -->
         <div class="game-container" id="gameContainer">
             <iframe src="https://www.crazygames.com/embed/bank-heist" allowfullscreen></iframe>
-            <button class="expand-btn" id="expandButton" onclick="toggleGameSize()">Expand</button>
+            <button class="expand-btn" id="expandButton" onclick="toggleGameSize()">De-expand</button>
         </div>
+
+        <!-- Expand Button for Hidden State -->
+        <button class="expand-btn hidden" id="showGameButton" onclick="toggleGameSize()">Expand</button>
 
         <!-- Form Section -->
         <form onsubmit="submitForm(); return false;">
@@ -172,40 +165,21 @@
         // Populate footer year dynamically
         document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-        // Toggle dropdown menu
-        function toggleDropdown() {
-            const dropdown = document.getElementById("profileDropdown");
-            dropdown.classList.toggle("active");
-        }
-
-        // Prompt for name and display it
-        function enterName() {
-            const name = prompt("Please enter your name:");
-            if (name) {
-                document.getElementById("userName").textContent = name;
-                localStorage.setItem("userName", name); // Save the name in local storage
-            }
-        }
-
-        // Retrieve saved name from local storage on page load
-        document.addEventListener("DOMContentLoaded", () => {
-            const savedName = localStorage.getItem("userName");
-            if (savedName) {
-                document.getElementById("userName").textContent = savedName;
-            }
-        });
-
-        // Toggle Game Size
+        // Game Expand/De-expand Functionality
         function toggleGameSize() {
             const gameContainer = document.getElementById("gameContainer");
             const expandButton = document.getElementById("expandButton");
+            const showGameButton = document.getElementById("showGameButton");
 
-            if (gameContainer.classList.contains("expanded")) {
-                gameContainer.classList.remove("expanded");
-                expandButton.textContent = "Expand";
-            } else {
-                gameContainer.classList.add("expanded");
+            if (gameContainer.classList.contains("hidden")) {
+                // Show game
+                gameContainer.classList.remove("hidden");
+                showGameButton.classList.add("hidden");
                 expandButton.textContent = "De-expand";
+            } else {
+                // Hide game
+                gameContainer.classList.add("hidden");
+                showGameButton.classList.remove("hidden");
             }
         }
 
