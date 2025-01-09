@@ -1,46 +1,32 @@
-// Populate footer year dynamically
-document.getElementById("currentYear").textContent = new Date().getFullYear();
+function toggleGameSize() {
+    const gameContainer = document.getElementById("gameContainer");
+    const expandButton = document.getElementById("expandButton");
+    const showGameButton = document.getElementById("showGameButton");
 
-// Game Expand/De-expand Functionality
-const expandButton = document.getElementById("expandButton");
-const showGameButton = document.getElementById("showGameButton");
-const gameContainer = document.getElementById("gameContainer");
-
-// Expand the game
-expandButton.addEventListener("click", () => {
-    gameContainer.style.display = "block"; // Show the game container
-    showGameButton.style.display = "none"; // Hide the "Expand" button
-    expandButton.textContent = "De-expand"; // Update button text
-});
-
-// De-expand (hide) the game
-expandButton.addEventListener("click", () => {
-    if (expandButton.textContent === "De-expand") {
-        gameContainer.style.display = "none"; // Hide the game container
-        showGameButton.style.display = "block"; // Show the "Expand" button
-        expandButton.textContent = "Expand"; // Update button text
-    }
-});
-
-// Alternate expand button when game is hidden
-showGameButton.addEventListener("click", () => {
-    gameContainer.style.display = "block"; // Show the game container
-    showGameButton.style.display = "none"; // Hide this button
-    expandButton.textContent = "De-expand"; // Update button text
-});
-
-// Form Submission Alert
-function submitForm() {
-    const name = document.getElementById('name').value;
-    const message = document.getElementById('message').value;
-    alert(`Thank you, ${name}! Your message: "${message}" has been received.`);
-    document.getElementById('submitButton').disabled = true; // Prevent duplicate submission
-}
-
-// Profile Name Functionality
-function toggleDropdown() {
-    const userName = prompt("Enter your name:");
-    if (userName) {
-        document.getElementById("userName").textContent = userName; // Display name next to the Profile button
+    if (gameContainer.classList.contains("hidden")) {
+        // Show the game
+        gameContainer.classList.remove("hidden");
+        showGameButton.classList.add("hidden"); // Hide "Expand" button
+    } else {
+        // Hide the game
+        gameContainer.classList.add("hidden");
+        showGameButton.classList.remove("hidden"); // Show "Expand" button
+        expandButton.classList.add("hidden"); // Hide "De-expand" button
     }
 }
+
+// Update this to ensure proper button visibility
+document.addEventListener("DOMContentLoaded", () => {
+    const gameContainer = document.getElementById("gameContainer");
+    const showGameButton = document.getElementById("showGameButton");
+    const expandButton = document.getElementById("expandButton");
+
+    // Ensure proper visibility at page load
+    if (gameContainer.classList.contains("hidden")) {
+        showGameButton.classList.remove("hidden");
+        expandButton.classList.add("hidden");
+    } else {
+        showGameButton.classList.add("hidden");
+        expandButton.classList.remove("hidden");
+    }
+});
