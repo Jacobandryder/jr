@@ -3,43 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title>My Clean Website</title>
+    <title>Website with Expandable Game</title>
     <style>
         /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            border: none !important;
+            outline: none !important;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--background-color, #f9f9f9);
-            color: var(--text-color, #333);
-            transition: background-color 0.3s, color 0.3s;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
             line-height: 1.6;
         }
 
         header {
             background: #007BFF;
             color: white;
-            padding: 15px 20px;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 1.5rem;
         }
 
         .profile-container {
@@ -47,66 +42,40 @@
         }
 
         .profile-btn {
-            background: white;
+            background: #fff;
             color: #007BFF;
-            padding: 10px 15px;
+            padding: 8px 16px;
             border-radius: 4px;
             font-size: 1rem;
             cursor: pointer;
             border: 1px solid #007BFF;
-            transition: 0.3s ease;
+            transition: 0.3s;
         }
 
         .profile-btn:hover {
             background: #e7f3ff;
         }
 
-        .dropdown-menu {
-            position: absolute;
-            top: 50px;
-            right: 0;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 200px;
-            display: none;
-            flex-direction: column;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .dropdown-menu.visible {
-            display: flex;
-        }
-
-        .dropdown-menu button {
-            background: none;
-            border: none;
-            padding: 12px 15px;
-            text-align: left;
+        .user-name {
+            margin-left: 10px;
             font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        .dropdown-menu button:hover {
-            background: #f0f0f0;
+            color: white;
         }
 
         .container {
             max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 20px auto;
             text-align: center;
         }
 
+        /* Game Section */
         .game-container {
             margin: 20px 0;
-            background: white;
+            background: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         .game-container iframe {
@@ -125,12 +94,15 @@
             right: 10px;
             background: #007BFF;
             color: white;
-            padding: 8px 12px;
+            padding: 5px 10px;
+            border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
             z-index: 1000;
+        }
+
+        .expand-btn.hidden {
+            display: none;
         }
 
         .expand-btn:hover {
@@ -138,131 +110,97 @@
         }
 
         form {
-            background: white;
-            padding: 25px;
+            background: #fff;
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 40px 0;
-            text-align: left;
-        }
-
-        form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        form input,
-        form textarea {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        form button {
-            background: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.3s ease;
-        }
-
-        form button:hover {
-            background: #0056b3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
         }
 
         footer {
-            margin-top: 50px;
-            padding: 15px;
+            margin-top: 40px;
+            padding: 10px;
             text-align: center;
             font-size: 0.9rem;
-            color: var(--text-color, #333);
-            background: var(--footer-color, #d0e7ff);
-            border-top: 1px solid var(--border-color, #b0d4f1);
+            color: #333;
+            background: #d0e7ff;
+            border-top: 1px solid #b0d4f1;
         }
     </style>
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://www.crazygames.com;">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=63072000; includeSubDomains; preload">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
 </head>
 <body>
+    <!-- Header with Profile Button -->
     <header>
-        <h1>Clean Website</h1>
+        <h1>My Website</h1>
         <div class="profile-container">
             <button class="profile-btn" onclick="toggleDropdown()">Profile</button>
-            <div class="dropdown-menu" id="dropdownMenu">
-                <button onclick="promptForName()">Enter Name</button>
-                <button onclick="toggleTheme()">Toggle Light/Dark Mode</button>
-            </div>
+            <span id="userName" class="user-name"></span>
         </div>
     </header>
 
     <div class="container">
+        <!-- Game Embed -->
         <div class="game-container" id="gameContainer">
             <iframe src="https://www.crazygames.com/embed/bank-heist" allowfullscreen></iframe>
-            <button class="expand-btn" id="expandButton" onclick="toggleGameSize()">De-expand</button>
+            <button class="expand-btn hidden" id="expandButton" onclick="toggleGameSize()">De-expand</button>
         </div>
-        <button class="expand-btn hidden" id="showGameButton" onclick="toggleGameSize()">Expand</button>
 
+        <!-- Expand Button for Hidden State -->
+        <button class="expand-btn" id="showGameButton" onclick="toggleGameSize()">Expand</button>
+
+        <!-- Form Section -->
         <form onsubmit="submitForm(); return false;">
             <label for="name">Your Name:</label>
-            <input type="text" id="name" placeholder="Enter your name" required>
+            <input type="text" id="name" placeholder="Enter your name" aria-label="Enter your name" required>
 
             <label for="message">Your Message:</label>
-            <textarea id="message" placeholder="Enter your message here" rows="4" required></textarea>
+            <textarea id="message" placeholder="Enter your message here" rows="4" aria-label="Enter your message" required></textarea>
 
             <button type="submit" id="submitButton">Submit</button>
         </form>
     </div>
 
+    <!-- Footer -->
     <footer>
         maybe © <span id="currentYear"></span> CJL & :) co.
     </footer>
 
     <script>
+        // Populate footer year dynamically
         document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-        function toggleDropdown() {
-            document.getElementById("dropdownMenu").classList.toggle("visible");
-        }
-
-        function promptForName() {
-            const name = prompt("Enter your name:");
-            if (name) {
-                document.getElementById("userName").textContent = name;
-            }
-        }
-
+        // Game Expand/De-expand Functionality
         function toggleGameSize() {
             const gameContainer = document.getElementById("gameContainer");
             const expandButton = document.getElementById("expandButton");
             const showGameButton = document.getElementById("showGameButton");
 
             if (gameContainer.classList.contains("hidden")) {
+                // Show the game
                 gameContainer.classList.remove("hidden");
-                showGameButton.classList.add("hidden");
+                showGameButton.classList.add("hidden"); // Hide "Expand" button
+                expandButton.classList.remove("hidden"); // Show "De-expand" button
             } else {
+                // Hide the game
                 gameContainer.classList.add("hidden");
-                showGameButton.classList.remove("hidden");
+                showGameButton.classList.remove("hidden"); // Show "Expand" button
+                expandButton.classList.add("hidden"); // Hide "De-expand" button
             }
         }
 
-        function toggleTheme() {
-            const root = document.documentElement;
-            const isLight = root.style.getPropertyValue("--background-color") === "#f9f9f9";
-            root.style.setProperty("--background-color", isLight ? "#333" : "#f9f9f9");
-            root.style.setProperty("--text-color", isLight ? "#f9f9f9" : "#333");
-            root.style.setProperty("--footer-color", isLight ? "#444" : "#d0e7ff");
-            root.style.setProperty("--border-color", isLight ? "#666" : "#b0d4f1");
-        }
-
+        // Form Submission Alert
         function submitForm() {
-            const name = document.getElementById("name").value;
-            const message = document.getElementById("message").value;
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
             alert(`Thank you, ${name}! Your message: "${message}" has been received.`);
+            document.getElementById('submitButton').disabled = true;
         }
     </script>
 </body>
