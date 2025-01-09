@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   script-src 'self'; 
+                   style-src 'self' 'unsafe-inline'; 
+                   frame-src https://www.crazygames.com; 
+                   connect-src 'self';">
     <title>Website with Expandable Game</title>
     <style>
         /* General Reset */
@@ -10,8 +20,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            border: none !important;
-            outline: none !important;
         }
 
         body {
@@ -37,38 +45,12 @@
             font-size: 1.5rem;
         }
 
-        .profile-container {
-            position: relative;
-        }
-
-        .profile-btn {
-            background: #fff;
-            color: #007BFF;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            border: 1px solid #007BFF;
-            transition: 0.3s;
-        }
-
-        .profile-btn:hover {
-            background: #e7f3ff;
-        }
-
-        .user-name {
-            margin-left: 10px;
-            font-size: 1rem;
-            color: white;
-        }
-
         .container {
             max-width: 900px;
             margin: 20px auto;
             text-align: center;
         }
 
-        /* Game Section */
         .game-container {
             margin: 20px 0;
             background: #fff;
@@ -101,20 +83,8 @@
             z-index: 1000;
         }
 
-        .expand-btn.hidden {
-            display: none;
-        }
-
         .expand-btn:hover {
             background: #0056b3;
-        }
-
-        form {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
         }
 
         footer {
@@ -127,47 +97,20 @@
             border-top: 1px solid #b0d4f1;
         }
     </style>
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://www.crazygames.com;">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=63072000; includeSubDomains; preload">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
 </head>
 <body>
-    <!-- Header with Profile Button -->
     <header>
         <h1>My Website</h1>
-        <div class="profile-container">
-            <button class="profile-btn" onclick="toggleDropdown()">Profile</button>
-            <span id="userName" class="user-name"></span>
-        </div>
     </header>
 
     <div class="container">
-        <!-- Game Embed -->
         <div class="game-container" id="gameContainer">
-            <iframe src="https://www.crazygames.com/embed/bank-heist" allowfullscreen></iframe>
-            <button class="expand-btn hidden" id="expandButton" onclick="toggleGameSize()">De-expand</button>
+            <iframe id="gameIframe" src="https://www.crazygames.com/embed/bank-heist" allowfullscreen></iframe>
+            <button class="expand-btn" id="expandButton" onclick="toggleGameSize()">De-expand</button>
         </div>
-
-        <!-- Expand Button for Hidden State -->
-        <button class="expand-btn" id="showGameButton" onclick="toggleGameSize()">Expand</button>
-
-        <!-- Form Section -->
-        <form onsubmit="submitForm(); return false;">
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" placeholder="Enter your name" aria-label="Enter your name" required>
-
-            <label for="message">Your Message:</label>
-            <textarea id="message" placeholder="Enter your message here" rows="4" aria-label="Enter your message" required></textarea>
-
-            <button type="submit" id="submitButton">Submit</button>
-        </form>
+        <button class="expand-btn hidden" id="showGameButton" onclick="toggleGameSize()">Expand</button>
     </div>
 
-    <!-- Footer -->
     <footer>
         maybe © <span id="currentYear"></span> CJL & :) co.
     </footer>
@@ -183,24 +126,15 @@
             const showGameButton = document.getElementById("showGameButton");
 
             if (gameContainer.classList.contains("hidden")) {
-                // Show the game
+                // Show game
                 gameContainer.classList.remove("hidden");
-                showGameButton.classList.add("hidden"); // Hide "Expand" button
-                expandButton.classList.remove("hidden"); // Show "De-expand" button
+                showGameButton.classList.add("hidden");
+                expandButton.textContent = "De-expand";
             } else {
-                // Hide the game
+                // Hide game
                 gameContainer.classList.add("hidden");
-                showGameButton.classList.remove("hidden"); // Show "Expand" button
-                expandButton.classList.add("hidden"); // Hide "De-expand" button
+                showGameButton.classList.remove("hidden");
             }
-        }
-
-        // Form Submission Alert
-        function submitForm() {
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
-            alert(`Thank you, ${name}! Your message: "${message}" has been received.`);
-            document.getElementById('submitButton').disabled = true;
         }
     </script>
 </body>
