@@ -161,35 +161,7 @@
         maybe © <span id="currentYear"></span> CJL & :) co.
     </footer>
 
-    <script>
-        // Populate footer year dynamically
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
-
-        // Game Expand/De-expand Functionality
-        function toggleGameSize() {
-            const gameContainer = document.getElementById("gameContainer");
-            const expandButton = document.getElementById("expandButton");
-            const showGameButton = document.getElementById("showGameButton");
-
-            if (gameContainer.classList.contains("hidden")) {
-                // Show game
-                gameContainer.classList.remove("hidden");
-                showGameButton.classList.add("hidden");
-                expandButton.textContent = "De-expand";
-            } else {
-                // Hide game
-                gameContainer.classList.add("hidden");
-                showGameButton.classList.remove("hidden");
-            }
-        }
-
-        // Form Submission Alert
-        function submitForm() {
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
-            alert(`Thank you, ${name}! Your message: "${message}" has been received.`);
-            document.getElementById('submitButton').disabled = true;
-        }
+    <!-- Link to External JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
