@@ -16,54 +16,96 @@
             box-sizing: border-box;
         }
 
-        /* Ensure the body fills the viewport */
         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
         }
 
-        /* Ensure the container takes up remaining space */
-        .container {
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+        }
+
+        main {
             flex: 1;
             padding: 20px;
+            max-width: 800px;
+            margin: auto;
             text-align: center;
         }
 
-        /* Footer Styling */
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            margin-top: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        form p {
+            margin-bottom: 15px;
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        form input, form textarea, form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
         footer {
-            background-color: #f4f4f9;
+            background-color: #007BFF;
+            color: white;
             text-align: center;
             padding: 10px 0;
-            font-size: 14px;
-            color: #333;
-            border-top: 1px solid #ccc;
-        }
-
-        /* Easter Egg Styling */
-        #easterEgg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            cursor: grab;
-            display: none; /* Hidden by default */
-        }
-
-        #easterEgg img {
-            width: 150px;
-            height: auto;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out;
-        }
-
-        #easterEgg img:active {
-            transform: rotate(10deg);
-            cursor: grabbing;
+            font-size: 0.9rem;
+            margin-top: auto;
         }
     </style>
 </head>
@@ -74,7 +116,7 @@
         <span id="userName"></span>
     </header>
 
-    <main class="container">
+    <main>
         <h2>Welcome to my website</h2>
         <p>This website was made with help from ChatGPT and hosted on GitHub Pages and Netlify.</p>
         <p>If the game does not load, click the button below to play it directly on CrazyGames.</p>
@@ -99,13 +141,6 @@
                 <button type="submit">Send</button>
             </p>
         </form>
-
-        <!-- Easter Egg Image (Initially Hidden) -->
-        <div id="easterEgg">
-            <img src="https://art.pixilart.com/2b49a08c4b.png" alt="Easter Egg" id="easterEggImage" />
-        </div>
-
-        <button onclick="showEasterEgg()">Reveal Easter Egg</button>
     </main>
 
     <footer>
@@ -122,12 +157,6 @@
             if (userName) {
                 document.getElementById("userName").textContent = `Welcome, ${userName}`;
             }
-        }
-
-        // Show the Easter Egg image
-        function showEasterEgg() {
-            const easterEgg = document.getElementById("easterEgg");
-            easterEgg.style.display = easterEgg.style.display === "none" ? "block" : "none";
         }
     </script>
 </body>
