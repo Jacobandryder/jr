@@ -79,7 +79,7 @@
             margin-bottom: 5px;
         }
 
-        form input, form button {
+        form input, form textarea, form button {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
@@ -122,8 +122,8 @@
         <p>If the game does not load, click the button below to play it directly on CrazyGames.</p>
         <a href="https://www.crazygames.com/game/bank-heist" target="_blank">Play Bank Heist on CrazyGames</a>
 
-        <!-- Contact Form -->
-        <form name="contact" netlify>
+        <!-- Contact Form with Netlify reCAPTCHA -->
+        <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true">
             <p>
                 <label>Name</label>
                 <input type="text" name="name" required />
@@ -132,6 +132,11 @@
                 <label>Email</label>
                 <input type="email" name="email" required />
             </p>
+            <p>
+                <label>Message</label>
+                <textarea name="message" required></textarea>
+            </p>
+            <div data-netlify-recaptcha="true"></div>
             <p>
                 <button type="submit">Send</button>
             </p>
