@@ -1,154 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Website with Easter Egg</title>
-  <style>
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>My Website</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
 
-    header {
-      background: #007BFF;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+        header {
+            background: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
 
-    header h1 {
-      font-size: 1.5rem;
-    }
+        header h1 {
+            margin: 0;
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      text-align: center;
-    }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    footer {
-      margin-top: 40px;
-      padding: 10px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #333;
-      background: #d0e7ff;
-      border-top: 1px solid #b0d4f1;
-    }
+        h2 {
+            margin-bottom: 10px;
+        }
 
-    /* Easter Egg Styling */
-    #easterEgg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      cursor: grab;
-      display: none;
-    }
+        p {
+            margin-bottom: 20px;
+        }
 
-    #easterEgg img {
-      width: 150px;
-      height: auto;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease-in-out;
-    }
+        /* Form Styling */
+        form {
+            text-align: left;
+            margin: 20px auto;
+            max-width: 600px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    #easterEgg img:active {
-      transform: rotate(10deg);
-      cursor: grabbing;
-    }
-  </style>
+        form p {
+            margin-bottom: 15px;
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        form button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background: #d0e7ff;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Easter Egg Styling */
+        #easter-egg {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: white;
+            border: 2px solid #007BFF;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        #easter-egg img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        #easter-egg button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #easter-egg button:hover {
+            background: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>My Website</h1>
-  </header>
+    <header>
+        <h1>My Website</h1>
+    </header>
 
-  <div class="container">
-    <h2>Welcome to my website</h2>
-    <p>This website was made with help from ChatGPT and hosted on GitHub Pages and Netlify.</p>
-  </div>
+    <div class="container">
+        <h2>Welcome to my website</h2>
+        <p>This website was made with help from ChatGPT and hosted on GitHub Pages and Netlify.</p>
+        <p>If the game does not load, click the button below to play it directly on CrazyGames.</p>
+    </div>
 
-  <footer>
-    maybe © <span id="currentYear"></span> CJL & :) co.
-  </footer>
+    <!-- Contact Form -->
+    <form
+        name="contact"
+        method="POST"
+        data-netlify-recaptcha="true"
+        data-netlify="true"
+    >
+        <p>
+            <label>Name: <input type="text" name="name" required /></label>
+        </p>
+        <p>
+            <label>Email: <input type="email" name="email" required /></label>
+        </p>
+        <p>
+            <label>Message: <textarea name="message" rows="4" required></textarea></label>
+        </p>
+        <div data-netlify-recaptcha="true"></div>
+        <p>
+            <button type="submit">Send</button>
+        </p>
+    </form>
 
-  <!-- Easter Egg Image -->
-  <div id="easterEgg">
-    <img
-      src="https://art.pixilart.com/2b49a08c4b.png"
-      alt="Easter Egg"
-      id="easterEggImage"
-    />
-  </div>
+    <!-- Easter Egg -->
+    <div id="easter-egg">
+        <img src="https://art.pixilart.com/2b49a08c4b.png" alt="Easter Egg Image">
+        <p>You found the Easter Egg!</p>
+        <button onclick="closeEasterEgg()">Close</button>
+    </div>
 
-  <script>
-    // Populate footer year dynamically
-    document.getElementById("currentYear").textContent = new Date().getFullYear();
+    <footer>
+        maybe © <span id="year"></span> CJL & :) co.
+    </footer>
 
-    // Easter Egg Trigger: Secret Key Combination (Shift + E)
-    let easterEggVisible = false;
+    <script>
+        // Auto-update the year
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-    document.addEventListener("keydown", (event) => {
-      if (event.shiftKey && event.key.toLowerCase() === "e") {
-        toggleEasterEgg();
-      }
-    });
+        // Easter Egg Logic
+        let keySequence = [];
+        const secretCode = "38384040373937396665"; // Konami Code
 
-    function toggleEasterEgg() {
-      const egg = document.getElementById("easterEgg");
-      easterEggVisible = !easterEggVisible;
+        document.addEventListener("keydown", (e) => {
+            keySequence.push(e.keyCode);
+            if (keySequence.join("").includes(secretCode)) {
+                document.getElementById("easter-egg").style.display = "block";
+            }
+            if (keySequence.length > 10) keySequence.shift(); // Keep only the last 10 key presses
+        });
 
-      egg.style.display = easterEggVisible ? "block" : "none";
-
-      if (easterEggVisible) {
-        makeDraggable(egg);
-      }
-    }
-
-    // Drag Functionality for the Easter Egg
-    function makeDraggable(element) {
-      let offsetX, offsetY;
-
-      const img = element.querySelector("img");
-
-      img.onmousedown = (event) => {
-        event.preventDefault();
-        offsetX = event.clientX - element.offsetLeft;
-        offsetY = event.clientY - element.offsetTop;
-
-        document.onmousemove = (e) => {
-          element.style.left = `${e.clientX - offsetX}px`;
-          element.style.top = `${e.clientY - offsetY}px`;
-        };
-
-        document.onmouseup = () => {
-          document.onmousemove = null;
-          document.onmouseup = null;
-        };
-      };
-    }
-  </script>
+        function closeEasterEgg() {
+            document.getElementById("easter-egg").style.display = "none";
+            keySequence = []; // Reset the sequence
+        }
+    </script>
 </body>
 </html>
