@@ -1,163 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title>My Website</title>
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Website with Easter Egg</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
 
-        header {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+    header {
+      background: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        header h1 {
-            font-size: 1.5rem;
-        }
+    header h1 {
+      font-size: 1.5rem;
+    }
 
-        main {
-            flex: 1;
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-        }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      text-align: center;
+    }
 
-        a {
-            color: #007BFF;
-            text-decoration: none;
-        }
+    footer {
+      margin-top: 40px;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #333;
+      background: #d0e7ff;
+      border-top: 1px solid #b0d4f1;
+    }
 
-        a:hover {
-            text-decoration: underline;
-        }
+    /* Easter Egg Styling */
+    #easterEgg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: grab;
+      display: none;
+    }
 
-        form {
-            margin-top: 20px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
+    #easterEgg img {
+      width: 150px;
+      height: auto;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+    }
 
-        form p {
-            margin-bottom: 15px;
-        }
-
-        form label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        form input, form textarea, form button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        form button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        form button:hover {
-            background-color: #0056b3;
-        }
-
-        footer {
-            background-color: #007BFF;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 0.9rem;
-            margin-top: auto;
-        }
-    </style>
+    #easterEgg img:active {
+      transform: rotate(10deg);
+      cursor: grabbing;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>My Website</h1>
-        <button onclick="toggleProfile()">Profile</button>
-        <span id="userName"></span>
-    </header>
+  <header>
+    <h1>My Website</h1>
+  </header>
 
-    <main>
-        <h2>Welcome to my website</h2>
-        <p>This website was made with help from ChatGPT and hosted on GitHub Pages and Netlify.</p>
-        <p>If the game does not load, click the button below to play it directly on CrazyGames.</p>
-        <a href="https://www.crazygames.com/game/bank-heist" target="_blank">Play Bank Heist on CrazyGames</a>
+  <div class="container">
+    <h2>Welcome to my website</h2>
+    <p>This website was made with help from ChatGPT and hosted on GitHub Pages and Netlify.</p>
+  </div>
 
-        <!-- Contact Form with Netlify reCAPTCHA -->
-        <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true">
-            <p>
-                <label>Name</label>
-                <input type="text" name="name" required />
-            </p>
-            <p>
-                <label>Email</label>
-                <input type="email" name="email" required />
-            </p>
-            <p>
-                <label>Message</label>
-                <textarea name="message" required></textarea>
-            </p>
-            <div data-netlify-recaptcha="true"></div>
-            <p>
-                <button type="submit">Send</button>
-            </p>
-        </form>
-    </main>
+  <footer>
+    maybe © <span id="currentYear"></span> CJL & :) co.
+  </footer>
 
-    <footer>
-        maybe © <span id="currentYear"></span> CJL & :) co.
-    </footer>
+  <!-- Easter Egg Image -->
+  <div id="easterEgg">
+    <img
+      src="https://art.pixilart.com/2b49a08c4b.png"
+      alt="Easter Egg"
+      id="easterEggImage"
+    />
+  </div>
 
-    <script>
-        // Populate footer year dynamically
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
+  <script>
+    // Populate footer year dynamically
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-        // Profile name prompt and display
-        function toggleProfile() {
-            const userName = prompt("Enter your name:");
-            if (userName) {
-                document.getElementById("userName").textContent = `Welcome, ${userName}`;
-            }
-        }
-    </script>
+    // Easter Egg Trigger: Secret Key Combination (Shift + E)
+    let easterEggVisible = false;
+
+    document.addEventListener("keydown", (event) => {
+      if (event.shiftKey && event.key.toLowerCase() === "e") {
+        toggleEasterEgg();
+      }
+    });
+
+    function toggleEasterEgg() {
+      const egg = document.getElementById("easterEgg");
+      easterEggVisible = !easterEggVisible;
+
+      egg.style.display = easterEggVisible ? "block" : "none";
+
+      if (easterEggVisible) {
+        makeDraggable(egg);
+      }
+    }
+
+    // Drag Functionality for the Easter Egg
+    function makeDraggable(element) {
+      let offsetX, offsetY;
+
+      const img = element.querySelector("img");
+
+      img.onmousedown = (event) => {
+        event.preventDefault();
+        offsetX = event.clientX - element.offsetLeft;
+        offsetY = event.clientY - element.offsetTop;
+
+        document.onmousemove = (e) => {
+          element.style.left = `${e.clientX - offsetX}px`;
+          element.style.top = `${e.clientY - offsetY}px`;
+        };
+
+        document.onmouseup = () => {
+          document.onmousemove = null;
+          document.onmouseup = null;
+        };
+      };
+    }
+  </script>
 </body>
 </html>
