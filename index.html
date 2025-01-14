@@ -32,9 +32,6 @@
             background-color: #e0f7fa;
             text-align: center;
             padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
             font-size: 14px;
         }
 
@@ -76,7 +73,13 @@
             border: 1px solid #ff0;
         }
 
-        /* Centered Content */
+        /* Easter Egg Image */
+        .easter-egg {
+            display: none;
+            margin: 20px auto;
+            max-width: 200px;
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -86,6 +89,14 @@
 
         h1, h2 {
             font-size: 28px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        form p {
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -100,9 +111,30 @@
         <h2>This website was made with help from ChatGPT and hosted on GitHub Pages and Netlify.</h2>
         <p>If the game does not load, click the button below to play it directly on CrazyGames.</p>
 
-        <!-- Buttons for theme toggles -->
+        <!-- Easter Egg -->
+        <img id="easter-egg" class="easter-egg" src="https://art.pixilart.com/2b49a08c4b.png" alt="Easter Egg">
+
+        <!-- Buttons -->
+        <button id="easter-egg-toggle" class="toggle-btn light">Show Easter Egg</button>
         <button id="light-dark-toggle" class="toggle-btn light">Toggle Light/Dark Mode</button>
         <button id="high-contrast-toggle" class="toggle-btn light">Toggle High-Contrast Mode</button>
+
+        <!-- Contact Form -->
+        <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true">
+            <p>
+                <label>Name: <input type="text" name="name" required /></label>
+            </p>
+            <p>
+                <label>Email: <input type="email" name="email" required /></label>
+            </p>
+            <p>
+                <label>Message: <textarea name="message" required></textarea></label>
+            </p>
+            <div data-netlify-recaptcha="true"></div>
+            <p>
+                <button type="submit">Send</button>
+            </p>
+        </form>
     </div>
 
     <footer>
@@ -132,6 +164,19 @@
         highContrastToggle.addEventListener("click", () => {
             document.body.classList.toggle("high-contrast");
             highContrastToggle.classList.toggle("high-contrast");
+        });
+
+        // Easter Egg Toggle
+        const easterEggToggle = document.getElementById("easter-egg-toggle");
+        const easterEgg = document.getElementById("easter-egg");
+        easterEggToggle.addEventListener("click", () => {
+            if (easterEgg.style.display === "none" || easterEgg.style.display === "") {
+                easterEgg.style.display = "block";
+                easterEggToggle.textContent = "Hide Easter Egg";
+            } else {
+                easterEgg.style.display = "none";
+                easterEggToggle.textContent = "Show Easter Egg";
+            }
         });
     </script>
 </body>
