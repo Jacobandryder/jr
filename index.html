@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,200 +10,130 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>My Website</title>
     <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #ffffff, #e0f7fa);
             color: #333;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         header {
-            background: #007BFF;
+            background-color: #007bff;
             color: white;
-            padding: 10px 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            text-align: center;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            margin-bottom: 10px;
-        }
-
-        p {
-            margin-bottom: 20px;
-        }
-
-        /* Form Styling */
-        form {
-            text-align: left;
-            margin: 20px auto;
-            max-width: 600px;
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        form p {
-            margin-bottom: 15px;
-        }
-
-        form label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        form input,
-        form textarea {
-            width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 10px;
-        }
-
-        form button {
-            background: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        form button:hover {
-            background: #0056b3;
+            text-align: center;
+            font-size: 24px;
         }
 
         footer {
-            margin-top: 20px;
+            background-color: #e0f7fa;
+            text-align: center;
             padding: 10px;
-            background: #d0e7ff;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #333;
-        }
-
-        /* Easter Egg Styling */
-        #easter-egg {
-            display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            background: white;
-            border: 2px solid #007BFF;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
         }
 
-        #easter-egg img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        #easter-egg button {
-            background: #007BFF;
+        footer.dark-mode {
+            background-color: #333;
             color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
         }
 
-        #easter-egg button:hover {
-            background: #0056b3;
+        /* Buttons */
+        .toggle-btn {
+            margin: 10px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-btn.light {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .toggle-btn.dark {
+            background-color: #333;
+            color: white;
+        }
+
+        /* High Contrast Mode */
+        body.high-contrast {
+            background-color: #000;
+            color: #ff0;
+        }
+
+        button.high-contrast {
+            background-color: #000;
+            color: #ff0;
+            border: 1px solid #ff0;
+        }
+
+        /* Centered Content */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            font-size: 28px;
         }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>My Website</h1>
+        My Website
     </header>
 
     <div class="container">
-        <h2>Welcome to my website</h2>
-        <p>This website was made with help from ChatGPT and hosted on GitHub Pages and Netlify.</p>
+        <h1>Welcome to my website</h1>
+        <h2>This website was made with help from ChatGPT and hosted on GitHub Pages and Netlify.</h2>
         <p>If the game does not load, click the button below to play it directly on CrazyGames.</p>
-    </div>
 
-    <!-- Contact Form -->
-    <form
-        name="contact"
-        method="POST"
-        data-netlify-recaptcha="true"
-        data-netlify="true"
-    >
-        <p>
-            <label>Name: <input type="text" name="name" required /></label>
-        </p>
-        <p>
-            <label>Email: <input type="email" name="email" required /></label>
-        </p>
-        <p>
-            <label>Message: <textarea name="message" rows="4" required></textarea></label>
-        </p>
-        <div data-netlify-recaptcha="true"></div>
-        <p>
-            <button type="submit">Send</button>
-        </p>
-    </form>
-
-    <!-- Easter Egg -->
-    <div id="easter-egg">
-        <img src="https://art.pixilart.com/2b49a08c4b.png" alt="Easter Egg Image">
-        <p>You found the Easter Egg!</p>
-        <button onclick="closeEasterEgg()">Close</button>
+        <!-- Buttons for theme toggles -->
+        <button id="light-dark-toggle" class="toggle-btn light">Toggle Light/Dark Mode</button>
+        <button id="high-contrast-toggle" class="toggle-btn light">Toggle High-Contrast Mode</button>
     </div>
 
     <footer>
-        maybe © <span id="year"></span> CJL & :) co.
+        <p>maybe © <span id="current-year"></span> CJL & :) co.</p>
     </footer>
 
     <script>
-        // Auto-update the year
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Update Year Dynamically
+        document.getElementById("current-year").textContent = new Date().getFullYear();
 
-        // Easter Egg Logic
-        let keySequence = [];
-        const secretCode = "38384040373937396665"; // Konami Code
-
-        document.addEventListener("keydown", (e) => {
-            keySequence.push(e.keyCode);
-            if (keySequence.join("").includes(secretCode)) {
-                document.getElementById("easter-egg").style.display = "block";
+        // Light/Dark Mode Toggle
+        const lightDarkToggle = document.getElementById("light-dark-toggle");
+        lightDarkToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            lightDarkToggle.classList.toggle("dark");
+            if (document.body.classList.contains("dark-mode")) {
+                document.body.style.background = "linear-gradient(to bottom right, #000000, #333)";
+                document.body.style.color = "white";
+            } else {
+                document.body.style.background = "linear-gradient(to bottom right, #ffffff, #e0f7fa)";
+                document.body.style.color = "#333";
             }
-            if (keySequence.length > 10) keySequence.shift(); // Keep only the last 10 key presses
         });
 
-        function closeEasterEgg() {
-            document.getElementById("easter-egg").style.display = "none";
-            keySequence = []; // Reset the sequence
-        }
+        // High-Contrast Mode Toggle
+        const highContrastToggle = document.getElementById("high-contrast-toggle");
+        highContrastToggle.addEventListener("click", () => {
+            document.body.classList.toggle("high-contrast");
+            highContrastToggle.classList.toggle("high-contrast");
+        });
     </script>
 </body>
+
 </html>
