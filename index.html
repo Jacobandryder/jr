@@ -12,27 +12,53 @@
     <style>
         /* General Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom right, #ffffff, #e0f7fa);
+            background: linear-gradient(to bottom right, #f5f5f5, #e0f7fa);
             color: #333;
-            transition: background 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+            transition: all 0.3s ease;
         }
 
         header {
             background-color: #007bff;
             color: white;
-            padding: 10px;
+            padding: 15px 20px;
             text-align: center;
-            font-size: 24px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            margin: 10px 0;
         }
 
         footer {
-            background-color: #e0f7fa;
+            background-color: #f1f1f1;
+            color: #555;
             text-align: center;
-            padding: 10px;
-            font-size: 14px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
         }
 
         footer.dark-mode {
@@ -40,25 +66,41 @@
             color: white;
         }
 
-        /* Buttons */
-        .toggle-btn {
-            margin: 10px;
-            padding: 8px 15px;
+        /* Button Styles */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 15px;
+            font-size: 1rem;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .toggle-btn.light {
+        .button.light {
             background-color: #007bff;
             color: white;
         }
 
-        .toggle-btn.dark {
+        .button.light:hover {
+            background-color: #0056b3;
+        }
+
+        .button.dark {
             background-color: #333;
             color: white;
+        }
+
+        .button.high-contrast {
+            background-color: #000;
+            color: #ff0;
+            border: 2px solid #ff0;
         }
 
         /* High Contrast Mode */
@@ -67,36 +109,52 @@
             color: #ff0;
         }
 
-        button.high-contrast {
-            background-color: #000;
-            color: #ff0;
-            border: 1px solid #ff0;
-        }
-
         /* Easter Egg Image */
         .easter-egg {
             display: none;
             margin: 20px auto;
             max-width: 200px;
+            border-radius: 10px;
+            border: 2px solid #007bff;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1, h2 {
-            font-size: 28px;
-        }
-
+        /* Form Styling */
         form {
             margin-top: 20px;
+            text-align: left;
         }
 
         form p {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -107,6 +165,7 @@
     </header>
 
     <div class="container">
+        <!-- Welcome Section -->
         <h1>Welcome to my website</h1>
         <h2>This website was made with help from ChatGPT and hosted on GitHub Pages and Netlify.</h2>
         <p>If the game does not load, click the button below to play it directly on CrazyGames.</p>
@@ -115,20 +174,25 @@
         <img id="easter-egg" class="easter-egg" src="https://art.pixilart.com/2b49a08c4b.png" alt="Easter Egg">
 
         <!-- Buttons -->
-        <button id="easter-egg-toggle" class="toggle-btn light">Show Easter Egg</button>
-        <button id="light-dark-toggle" class="toggle-btn light">Toggle Light/Dark Mode</button>
-        <button id="high-contrast-toggle" class="toggle-btn light">Toggle High-Contrast Mode</button>
+        <div class="button-group">
+            <button id="easter-egg-toggle" class="button light">Show Easter Egg</button>
+            <button id="light-dark-toggle" class="button light">Toggle Light/Dark Mode</button>
+            <button id="high-contrast-toggle" class="button light">Toggle High-Contrast Mode</button>
+        </div>
 
         <!-- Contact Form -->
         <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true">
             <p>
-                <label>Name: <input type="text" name="name" required /></label>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
             </p>
             <p>
-                <label>Email: <input type="email" name="email" required /></label>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
             </p>
             <p>
-                <label>Message: <textarea name="message" required></textarea></label>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
             </p>
             <div data-netlify-recaptcha="true"></div>
             <p>
@@ -154,7 +218,7 @@
                 document.body.style.background = "linear-gradient(to bottom right, #000000, #333)";
                 document.body.style.color = "white";
             } else {
-                document.body.style.background = "linear-gradient(to bottom right, #ffffff, #e0f7fa)";
+                document.body.style.background = "linear-gradient(to bottom right, #f5f5f5, #e0f7fa)";
                 document.body.style.color = "#333";
             }
         });
@@ -163,7 +227,6 @@
         const highContrastToggle = document.getElementById("high-contrast-toggle");
         highContrastToggle.addEventListener("click", () => {
             document.body.classList.toggle("high-contrast");
-            highContrastToggle.classList.toggle("high-contrast");
         });
 
         // Easter Egg Toggle
